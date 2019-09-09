@@ -1,7 +1,17 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import JsDos from '../JsDos/JsDos'
 
+function App() {
+  return (
+    <div className="App">
+      <JsDos />
+    </div>
+  )
+}
+
+/*
 function App() {
   return (
     <div className="App">
@@ -22,5 +32,6 @@ function App() {
     </div>
   );
 }
+*/
 
 export default App;
