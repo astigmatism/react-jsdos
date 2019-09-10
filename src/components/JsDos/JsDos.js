@@ -1,11 +1,9 @@
 import React from 'react';
 import './JsDos.css';
 
-function JsDos() {
+const JsDos = () => {
     return (
-        <div>
-            <canvas class='jsdos-canvas'></canvas>
-        </div>
+        <canvas className='jsdos-canvas'></canvas>
     )
 }
 

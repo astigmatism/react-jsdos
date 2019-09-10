@@ -1,0 +1,7 @@
+.videotools-ul {
+    list-style: none;
+}
+
+.videotools-ul li {
+    display: inline-block;
+}

@@ -1,12 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
 import JsDos from '../JsDos/JsDos'
+import VideoTools from '../VideoTools/VideoTools'
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <JsDos />
+      <div className='jsdos-wrapper'>
+        <JsDos />
+        <VideoTools />
+      </div>
     </div>
   )
 }
