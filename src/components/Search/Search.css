@@ -1,0 +1,14 @@
+.search {
+  background-color: #828c95;
+}
+
+.search input {
+  height: 20px;
+  width: 100%;
+  background-image: url('/svg/search.svg');
+  background-size: 15px;
+  background-position: 10px center;
+  background-repeat: no-repeat;
+  padding: 5px 5px 5px 30px;
+  border: none;
+}

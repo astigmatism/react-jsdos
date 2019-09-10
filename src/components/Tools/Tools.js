@@ -1,9 +1,9 @@
 import React from 'react';
-import './VideoTools.css';
+import './Tools.css';
 import ResolutionButton from './ResolutionButton'
 import ResolutionData from './ResolutionData'
 
-class VideoTools extends React.Component {
+class Tools extends React.Component {
 
     render() {
 
@@ -24,4 +24,4 @@ class VideoTools extends React.Component {
 
 }
 
-export default VideoTools;
+export default Tools;
