@@ -1,4 +1,4 @@
-.jsdos-wrapper {
+.jsdos {
     /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#b5bdc8+0,828c95+36,28343b+100 */
     background: #b5bdc8; /* Old browsers */
     background: -moz-radial-gradient(center, ellipse cover,  #b5bdc8 0%, #828c95 36%, #28343b 100%); /* FF3.6-15 */
@@ -7,7 +7,7 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5bdc8', endColorstr='#28343b',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
-.jsdos-canvas {
+.jsdos canvas {
     width: 640px;
     height: 480px;
 }
