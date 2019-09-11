@@ -6,14 +6,12 @@ class ResolutionButton extends React.Component {
         super(props)
     }
 
-    handleClick(e) {
-
-    }
-
     render() {
         return (
             <li>
-                <button onClick={this.handleClick}>{`${this.props.name} (${this.props.width}x${this.props.height})`}</button>
+                <button onClick={() => this.props.handleResolutionChange(`x${this.props.width}x${this.props.height}`)}>
+                    {`${this.props.name} (${this.props.width}x${this.props.height})`}
+                </button>
             </li>
         )
     }
