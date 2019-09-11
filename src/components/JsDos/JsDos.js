@@ -7,14 +7,14 @@ class JsDos extends React.Component {
         super(props)
         this.state = {
             cycles: 'max',
-            rootContentToExtract: null,
-            gameFolderContentToExtract: 'zakenh',
+            rootContentToExtract: 'samnmaxcd',
+            gameFolderContentToExtract: 'SAMNMAX.CD',
             commandInterface: null
         }
     }
 
     componentDidMount() {
-        //this.startDos()
+        this.startDos()
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {

@@ -4,10 +4,6 @@ class ResolutionButton extends React.Component {
 
     constructor(props) {
         super(props)
-
-        const name = this.props.name
-        const width = this.props.width
-        const height = this.props.height
     }
 
     handleClick(e) {
@@ -17,7 +13,7 @@ class ResolutionButton extends React.Component {
     render() {
         return (
             <li>
-                <button onClick={this.handleClick}>{`${this.name} (${this.width}x${this.height})`}</button>
+                <button onClick={this.handleClick}>{`${this.props.name} (${this.props.width}x${this.props.height})`}</button>
             </li>
         )
     }

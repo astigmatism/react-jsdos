@@ -8,6 +8,7 @@ class Tools extends React.Component {
     render() {
 
         const buttonComponents = ResolutionData.map(resolutionData => 
+
             <ResolutionButton 
                 key={resolutionData.id} 
                 name={resolutionData.name} 
