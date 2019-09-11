@@ -23,7 +23,7 @@ class JsDos extends React.Component {
 
     startDos() {
         window.Dos(this.refs.canvas, {
-            cycles: this.state.cycles,
+            cycles: 'max',
             wdosboxUrl: "javascripts/wdosbox.js",
             log: (message) => {
                 console.log(message);
