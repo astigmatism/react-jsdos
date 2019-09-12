@@ -1,9 +1,9 @@
-.videotools-ul {
+.videotools-ul, .dostools-ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.videotools-ul li {
+.videotools-ul li, .dostools-ul li {
     display: inline-block;
 }

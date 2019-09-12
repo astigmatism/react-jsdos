@@ -7,6 +7,8 @@ class JsDos extends React.Component {
         super(props)
         
         this.state = {
+            isGameLoading: false,
+            isGameRunning: false,
             commandInterface: null
         }
 
@@ -31,20 +33,18 @@ class JsDos extends React.Component {
             return false
         }
 
-        // if (nextProps.dosBoxCommand !== this.props.dosBoxCommand && this.state.commandInterface !== null) {
-        //     this.dosBosCommand(nextProps.dosBoxCommand)
-        //     return false
-        // }
-
         if (nextProps.resolutionName !== this.props.resolutionName) 
             return true
 
         return false
     }
 
-    dosBosCommand(cmd) {
+    handleDosBoxCommand(command) {
 
-        switch (cmd) {
+        if (this.state.commandInterface === null)
+            return
+
+        switch (command) {
             case 'screenshot':
                 this.state.commandInterface.screenshot().then((data) => {
                     const w = window.open("about:blank", "image from canvas");
@@ -59,11 +59,20 @@ class JsDos extends React.Component {
     stopDos() {
         this.state.commandInterface.exit()
         this.setState({
-            commandInterface: null
+            commandInterface: null,
+            isGameRunning: false
         })
     }
 
     startDos(rootContentCompressedFileName, folderContentCompressedFileName) {
+        
+        if (this.state.isGameLoading || this.state.isGameRunning)
+            return
+        
+        this.setState({
+            isGameLoading: true
+        })
+
         window.Dos(this.refs.canvas, {
             cycles: 'max',
             wdosboxUrl: "javascripts/wdosbox.js",
@@ -79,6 +88,8 @@ class JsDos extends React.Component {
                 this.extractFilesToRoot(fs, rootContentCompressedFileName).then(() => {
                     main(['-conf', folderContentCompressedFileName + '/dosbox.conf']).then((ci) => {
                         this.setState({
+                            isGameLoading: false,
+                            isGameRunning: true,
                             commandInterface: ci
                         })
                     })

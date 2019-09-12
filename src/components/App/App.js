@@ -4,13 +4,14 @@ import Header from '../Header/Header'
 import Search from '../Search/Search'
 import JsDos from '../JsDos/JsDos'
 import Tools from '../Tools/Tools'
+import TitleSelection from '../TitleSelection/TitleSelection'
 
 class App extends React.Component {
 
   constructor() {
     super()
     this.state = {
-      resolutionName: 'x640x480',
+      resolutionName: localStorage.getItem('App:resolutionName') || 'x640x480',
       activeTitle: null
     }
 
@@ -36,9 +37,11 @@ class App extends React.Component {
   }
 
   dosBoxCommand(command) {
+    this.refs.jsdos.handleDosBoxCommand(command)
   }
 
   resolutionChanged(resolutionName) {
+    localStorage.setItem('App:resolutionName', resolutionName)
     this.setState({
       resolutionName: resolutionName
     });
@@ -46,11 +49,17 @@ class App extends React.Component {
 
   render() {
 
+    const activeTitle = this.state.activeTitle
+    const resolutionName = this.state.resolutionName
+
     return (
-      <div className="App">
+      <div className='App'>
         <Search />
-        <JsDos ref={this.dosBoxCommand} resolutionName={this.state.resolutionName} activeTitle={this.state.activeTitle} />
-        <Tools resolutionChanged={this.resolutionChanged} loadTitle={this.loadTitle} unloadTitle={this.unloadTitle} dosBoxCommand={this.dosBoxCommand} />
+        <JsDos ref='jsdos' resolutionName={resolutionName} activeTitle={activeTitle} />
+          <div className='content'>
+            <Tools resolutionChanged={this.resolutionChanged} loadTitle={this.loadTitle} unloadTitle={this.unloadTitle} dosBoxCommand={this.dosBoxCommand} />
+            <TitleSelection />
+          </div>
       </div>
     )
   }

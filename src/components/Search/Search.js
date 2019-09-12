@@ -12,10 +12,15 @@ class Search extends React.Component {
     e.target.value = ''
   }
 
+  handleBlur(e) {
+    if (e.target.value.length === 0)
+      e.target.value = 'Search'
+  }
+
   render() {
     return (
       <div className='search'>
-        <input ref='input' type='input' defaultValue='Search' onFocus={this.handleFocus} />
+        <input ref='input' type='input' defaultValue='Search' onFocus={this.handleFocus} onBlur={this.handleBlur} />
       </div>
     )
   }

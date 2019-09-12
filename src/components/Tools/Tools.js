@@ -32,6 +32,12 @@ class Tools extends React.Component {
                         <button onClick={() => this.props.loadTitle(null, 'zakenh')}>Load Zak</button>
                     </li>
                     <li>
+                        <button onClick={() => this.props.loadTitle('samnmaxcd', 'samnmax.cd')}>Load Sam and Max</button>
+                    </li>
+                    <li>
+                        <button onClick={() => this.props.loadTitle(null, 'simcity2')}>Load Sim City 2000</button>
+                    </li>
+                    <li>
                         <button onClick={() => this.props.unloadTitle()}>Stop</button>
                     </li>
                     <li>
