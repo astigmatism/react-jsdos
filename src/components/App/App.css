@@ -1,11 +1,10 @@
 .App {
   text-align: center;
+  height: 100vh;
 }
 
 .content {
 	width: 100%;
 	background-color: #fff;
-	min-height:100% !important; /* browser fill */
-  height: auto;                /*content fill */
   overflow: hidden;
 }

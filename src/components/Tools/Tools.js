@@ -18,7 +18,7 @@ class Tools extends React.Component {
                 name={resolutionData.name} 
                 width={resolutionData.width} 
                 height={resolutionData.height} 
-                handleResolutionChange={this.props.resolutionChanged}
+                handleResolutionChange={this.props.handleResolutionChange}
                 />
         );
 
@@ -32,13 +32,13 @@ class Tools extends React.Component {
                         <button onClick={() => this.props.loadTitle(null, 'zakenh')}>Load Zak</button>
                     </li>
                     <li>
-                        <button onClick={() => this.props.loadTitle('samnmaxcd', 'samnmax.cd')}>Load Sam and Max</button>
+                        <button onClick={() => this.props.loadTitle('samnmax', 'samnmax.cd')}>Load Sam and Max</button>
                     </li>
                     <li>
                         <button onClick={() => this.props.loadTitle(null, 'simcity2')}>Load Sim City 2000</button>
                     </li>
                     <li>
-                        <button onClick={() => this.props.unloadTitle()}>Stop</button>
+                        <button onClick={() => this.props.dosBoxCommand('stop')}>Stop</button>
                     </li>
                     <li>
                         <button onClick={() => this.props.dosBoxCommand('screenshot')}>Take Screenshot</button>

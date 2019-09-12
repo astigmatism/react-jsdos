@@ -11,54 +11,51 @@ class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      resolutionName: localStorage.getItem('App:resolutionName') || 'x640x480',
+      dosBoxResolution: JSON.parse(localStorage.getItem('App.dosBoxResolution')) || [640, 480],
       activeTitle: null
     }
 
-    this.resolutionChanged = this.resolutionChanged.bind(this)
+    this.handleResolutionChange = this.handleResolutionChange.bind(this)
     this.loadTitle = this.loadTitle.bind(this)
-    this.unloadTitle = this.unloadTitle.bind(this)
     this.dosBoxCommand = this.dosBoxCommand.bind(this)
   }
 
-  loadTitle (rootContentCompressedFileName, folderContentCompressedFileName) {
+  loadTitle (titleData) {
     this.setState({
-      activeTitle: {
-        rootContentCompressedFileName: rootContentCompressedFileName,
-        folderContentCompressedFileName: folderContentCompressedFileName
-      }
-    })
-  }
-
-  unloadTitle() {
-    this.setState({
-      activeTitle: null
+      activeTitle: titleData
     })
   }
 
   dosBoxCommand(command) {
+
+    if (command === 'stop') {
+      this.setState({
+        activeTitle: null
+      })
+    }
+
     this.refs.jsdos.handleDosBoxCommand(command)
   }
 
-  resolutionChanged(resolutionName) {
-    localStorage.setItem('App:resolutionName', resolutionName)
+  handleResolutionChange(width, height) {
+    localStorage.setItem('App.dosBoxResolution', JSON.stringify([width, height]))
     this.setState({
-      resolutionName: resolutionName
+      dosBoxResolution: [width, height]
     });
   }
 
   render() {
 
     const activeTitle = this.state.activeTitle
-    const resolutionName = this.state.resolutionName
+    const dosBoxResolution = this.state.dosBoxResolution
 
     return (
       <div className='App'>
         <Search />
-        <JsDos ref='jsdos' resolutionName={resolutionName} activeTitle={activeTitle} />
+        <JsDos ref='jsdos' dosBoxResolution={dosBoxResolution} activeTitle={activeTitle} />
           <div className='content'>
-            <Tools resolutionChanged={this.resolutionChanged} loadTitle={this.loadTitle} unloadTitle={this.unloadTitle} dosBoxCommand={this.dosBoxCommand} />
-            <TitleSelection />
+            <Tools handleResolutionChange={this.handleResolutionChange} loadTitle={this.loadTitle} dosBoxCommand={this.dosBoxCommand} />
+            <TitleSelection loadTitle={this.loadTitle} />
           </div>
       </div>
     )

@@ -1,0 +1,8 @@
+.titleTile {
+  overflow-wrap: break-word;
+  height: auto;
+  width: 115.5px;
+  margin: 5px;
+
+  background-color: #eee;
+}

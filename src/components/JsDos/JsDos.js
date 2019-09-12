@@ -22,18 +22,15 @@ class JsDos extends React.Component {
 
     shouldComponentUpdate(nextProps, nextState) {
         
-        if (nextProps.activeTitle !== this.props.activeTitle) {
+        if (nextProps.activeTitle !== null && nextProps.activeTitle !== this.props.activeTitle) {
 
-            if (nextProps.activeTitle === null && this.state.commandInterface !== null) {
-                this.stopDos()
-                return false
-            }
-
-            this.startDos(nextProps.activeTitle.rootContentCompressedFileName, nextProps.activeTitle.folderContentCompressedFileName)
+            this.stopDos().then(() => {
+                this.startDos(nextProps.activeTitle)
+            })
             return false
         }
 
-        if (nextProps.resolutionName !== this.props.resolutionName) 
+        if (nextProps.dosBoxResolution !== this.props.dosBoxResolution) 
             return true
 
         return false
@@ -51,20 +48,29 @@ class JsDos extends React.Component {
                     w.document.write("<img src='" + data + "' alt='from canvas'/>");
                 })
                 break
+            case 'stop':
+                this.stopDos().then(() => {
+                    console.log('emulator stopped')
+                })
+                break
             default:
                 break
         }
     }
 
-    stopDos() {
-        this.state.commandInterface.exit()
+    async stopDos() {
+
+        if (!this.state.isGameRunning) 
+            return
+
+        await this.state.commandInterface.exit()
         this.setState({
             commandInterface: null,
             isGameRunning: false
         })
     }
 
-    startDos(rootContentCompressedFileName, folderContentCompressedFileName) {
+    startDos(titleData) {
         
         if (this.state.isGameLoading || this.state.isGameRunning)
             return
@@ -84,9 +90,9 @@ class JsDos extends React.Component {
             }
         }).ready((fs, main) => {
       
-            fs.extract('games/' + folderContentCompressedFileName + '.zip', '/' + folderContentCompressedFileName).then(() => {
-                this.extractFilesToRoot(fs, rootContentCompressedFileName).then(() => {
-                    main(['-conf', folderContentCompressedFileName + '/dosbox.conf']).then((ci) => {
+            fs.extract('games/' + titleData.name + '/subfolder.zip', '/' + titleData.subfolder).then(() => {
+                this.extractFilesToRoot(fs, titleData).then(() => {
+                    main(['-conf', titleData.subfolder + '/dosbox.conf']).then((ci) => {
                         this.setState({
                             isGameLoading: false,
                             isGameRunning: true,
@@ -101,19 +107,25 @@ class JsDos extends React.Component {
         })
     }
 
-    extractFilesToRoot = async (fs, rootContentCompressedFileName) => {
-        if (rootContentCompressedFileName == null) return;
-        return await fs.extract('games/' + rootContentCompressedFileName + '.zip');
-    }
-
-    handleContextMenu(e) {
-        e.preventDefault()
+    extractFilesToRoot = async (fs, titleData) => {
+        try {
+            return await fs.extract('games/' + titleData.name + '/root.zip');
+        }
+        catch(e) {
+            console.log('no root file to extract')
+        }
     }
 
     render() {
+
+        let resolutionClass = `x${this.props.dosBoxResolution[0]}x${this.props.dosBoxResolution[1]}`
+        let jsDosStyles = {
+            height: this.props.dosBoxResolution[1] + 'px'
+        }
+
         return (
-            <div className='jsdos'>
-                <canvas ref='canvas' className={this.props.resolutionName} onContextMenu={this.handleContextMenu}></canvas>
+            <div className='jsdos' style={jsDosStyles}>
+                <canvas ref='canvas' className={resolutionClass} onContextMenu={(e) => { e.preventDefault() }}></canvas>
             </div>
         )
     }
