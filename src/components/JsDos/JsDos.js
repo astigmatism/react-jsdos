@@ -44,8 +44,7 @@ class JsDos extends React.Component {
         switch (command) {
             case 'screenshot':
                 this.state.commandInterface.screenshot().then((data) => {
-                    const w = window.open("about:blank", "image from canvas");
-                    w.document.write("<img src='" + data + "' alt='from canvas'/>");
+                    console.log(data)
                 })
                 break
             case 'stop':
@@ -64,6 +63,7 @@ class JsDos extends React.Component {
             return
 
         await this.state.commandInterface.exit()
+        this.refs.canvas.style.opacity = 0;
         this.setState({
             commandInterface: null,
             isGameRunning: false
@@ -87,12 +87,16 @@ class JsDos extends React.Component {
             },
             onerror: (message) => {
                 console.log(message);
+            },
+            onprogress: (stage, total, loaded) => {
+                console.log(stage, loaded * 100 / total + "%");
             }
         }).ready((fs, main) => {
       
-            fs.extract('games/' + titleData.name + '/subfolder.zip', '/' + titleData.subfolder).then(() => {
+            fs.extract('games/' + titleData.name + '/b.zip', '/' + titleData.bfolder).then(() => {
                 this.extractFilesToRoot(fs, titleData).then(() => {
-                    main(['-conf', titleData.subfolder + '/dosbox.conf']).then((ci) => {
+                    main(['-conf', titleData.bfolder + '/dosbox.conf']).then((ci) => {
+                        this.refs.canvas.style.opacity = 1;
                         this.setState({
                             isGameLoading: false,
                             isGameRunning: true,
@@ -109,7 +113,7 @@ class JsDos extends React.Component {
 
     extractFilesToRoot = async (fs, titleData) => {
         try {
-            return await fs.extract('games/' + titleData.name + '/root.zip');
+            return await fs.extract('games/' + titleData.name + '/a.zip');
         }
         catch(e) {
             console.log('no root file to extract')

@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css'
 import Header from '../Header/Header'
-import Search from '../Search/Search'
 import JsDos from '../JsDos/JsDos'
 import Tools from '../Tools/Tools'
 import TitleSelection from '../TitleSelection/TitleSelection'
@@ -51,12 +50,14 @@ class App extends React.Component {
 
     return (
       <div className='App'>
-        <Search />
-        <JsDos ref='jsdos' dosBoxResolution={dosBoxResolution} activeTitle={activeTitle} />
-          <div className='content'>
-            <Tools handleResolutionChange={this.handleResolutionChange} loadTitle={this.loadTitle} dosBoxCommand={this.dosBoxCommand} />
-            <TitleSelection loadTitle={this.loadTitle} />
-          </div>
+        <div className='fixedWidthContainer'>
+          <Header />
+          <JsDos ref='jsdos' dosBoxResolution={dosBoxResolution} activeTitle={activeTitle} />
+            <div className='content'>
+              <Tools handleResolutionChange={this.handleResolutionChange} loadTitle={this.loadTitle} dosBoxCommand={this.dosBoxCommand} />
+              <TitleSelection loadTitle={this.loadTitle} />
+            </div>
+        </div>
       </div>
     )
   }

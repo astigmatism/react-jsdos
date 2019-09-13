@@ -16,6 +16,7 @@ class Title extends React.Component {
   render() {
     return (
       <div className='titleTile' onClick={this.handleClick}>
+        {this.props.data.thumbs.length > 0 ? <img width='100%' src={this.props.data.thumbs[0]} /> : ''}
         {this.props.data.title}
       </div>
     )
