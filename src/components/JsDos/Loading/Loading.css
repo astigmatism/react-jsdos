@@ -1,0 +1,7 @@
+.dialog {
+  opacity: 0;
+  transition:All 500ms ease-out;
+  -webkit-transition:All 500ms ease-out;
+  -moz-transition:All 500ms ease-out;
+  -o-transition:All 500ms ease-out;
+}

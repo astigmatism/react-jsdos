@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  min-height: 100vh;
   
   /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#b5bdc8+0,828c95+74,828c95+74 */
   background: #b5bdc8; /* Old browsers */
@@ -20,4 +21,5 @@
 	width: 100%;
 	background-color: #fff;
   overflow: hidden;
+  min-height: 100%;
 }
