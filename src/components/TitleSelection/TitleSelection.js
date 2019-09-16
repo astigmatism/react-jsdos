@@ -15,22 +15,28 @@ class TitleSelection extends React.Component {
 
     render() {
 
-        const titles = TitleData.map(titleData => 
-            <TitleTile 
-                key={titleData.key}
-                data={titleData}
-                loadTitle={this.props.loadTitle}
-            />
-        );
+        const buckets = [[], [], [], [], [], []]
+        for (let i = 0; i < TitleData.length; ++i) {
+            buckets[i % buckets.length].push(
+                <TitleTile 
+                    key={TitleData[i].key}
+                    data={TitleData[i]}
+                    loadTitle={this.props.loadTitle}
+                />
+
+            )
+        }
+
+        console.log(buckets)
 
         return (
             <div className='titleSelection'>
-                <ul></ul>
-                <ul></ul>
-                <ul></ul>
-                <ul></ul>
-                <ul></ul>
-                <ul></ul>
+                <ul>{buckets[0]}</ul>
+                <ul>{buckets[1]}</ul>
+                <ul>{buckets[2]}</ul>
+                <ul>{buckets[3]}</ul>
+                <ul>{buckets[4]}</ul>
+                <ul>{buckets[5]}</ul>
             </div>
         )
     }

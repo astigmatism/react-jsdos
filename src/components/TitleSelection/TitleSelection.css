@@ -2,3 +2,11 @@
   height: auto;
   padding: 10px;
 }
+
+.titleSelection ul {
+  display: inline-block;
+  vertical-align: top;
+  width: 157.333px;
+  padding: 0;
+  margin: 0;
+}
