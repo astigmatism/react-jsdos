@@ -1,8 +1,22 @@
 .titleTile {
+  
+  display: inline-block;
+  vertical-align:top;
+  
   overflow-wrap: break-word;
   height: auto;
   width: 157.333px;
   margin: 5px;
 
   background-color: #eee;
+  cursor: pointer;
+
+  transition:All 100ms ease-out;
+  -webkit-transition:All 100ms ease-out;
+  -moz-transition:All 100ms ease-out;
+  -o-transition:All 100ms ease-out;
+}
+
+.titleTile:active {
+  transform: scale(0.95);
 }

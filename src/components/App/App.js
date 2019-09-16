@@ -53,10 +53,10 @@ class App extends React.Component {
         <div className='fixedWidthContainer'>
           <Header />
           <JsDos ref='jsdos' dosBoxResolution={dosBoxResolution} activeTitle={activeTitle} />
-          <div className='content'>
-            <Tools handleResolutionChange={this.handleResolutionChange} loadTitle={this.loadTitle} dosBoxCommand={this.dosBoxCommand} />
-            <TitleSelection loadTitle={this.loadTitle} />
-          </div>
+            <div className='content'>
+              <TitleSelection loadTitle={this.loadTitle} />
+              <Tools handleResolutionChange={this.handleResolutionChange} loadTitle={this.loadTitle} dosBoxCommand={this.dosBoxCommand} />
+            </div>
         </div>
       </div>
     )

@@ -9,7 +9,16 @@ class Loading extends React.Component {
 
     this.canvas = null
 
+    this.internalState = {
+      idle: 'idle',
+      downloading: 'downloading',
+      extractingFolder: 'extractingFolder',
+      exractingRoot: 'exractingRoot',
+      resizeOnStart: 'resizeOnStart'
+  }
+
     this.start = this.start.bind(this);
+    this.message = this.message.bind(this)
   }
 
   start() {
@@ -25,7 +34,7 @@ class Loading extends React.Component {
     var camera, scene, renderer;
     
     function init() {
-        camera = new THREE.PerspectiveCamera( 50, _width / _height, 1, 10 );
+        camera = new THREE.PerspectiveCamera( 15, _width / _height, 1, 20 );
         camera.position.z = 2;
         scene = new THREE.Scene();
         // geometry
@@ -102,11 +111,6 @@ class Loading extends React.Component {
         //
         //window.addEventListener( 'resize', onWindowResize, false );
     }
-    function onWindowResize( event ) {
-        camera.aspect = _width / _height;
-        camera.updateProjectionMatrix();
-        renderer.setSize( _width, _height );
-    }
     //
     function animate() {
         requestAnimationFrame( animate );
@@ -139,9 +143,33 @@ class Loading extends React.Component {
     return true
   }
 
+  message() {
+    
+    switch (this.props.operation) {
+      case this.internalState.idle:
+        return <div></div>
+      case this.internalState.downloading:
+          return <div className='message'>preparing</div>
+      case this.internalState.extractingFolder:
+          return <div className='message'>installing</div>
+      case this.internalState.exractingRoot:
+          if (this.props.percentage > 95 || this.props.percentage < 5) {
+
+            return <div className='message'>installing</div>
+          }
+          return <div className='message'>{this.props.percentage}% loaded</div>
+      case this.internalState.resizeOnStart:
+        return  <div className='message'>ready!</div>
+    }
+  }
+
   render() {
+
     return (
-      <div ref='dialog' className='dialog'></div>
+      <div ref='dialog' className='dialog'>
+        <div className='shim'></div>
+        { this.message() }
+      </div>
     )
   }
 

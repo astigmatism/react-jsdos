@@ -28,20 +28,20 @@ class Tools extends React.Component {
                     {buttonComponents}
                 </ul>
                 <ul className='dostools-ul'>
-                    <li>
-                        <button onClick={() => this.props.loadTitle(null, 'zakenh')}>Load Zak</button>
-                    </li>
-                    <li>
-                        <button onClick={() => this.props.loadTitle('samnmax', 'samnmax.cd')}>Load Sam and Max</button>
-                    </li>
-                    <li>
-                        <button onClick={() => this.props.loadTitle(null, 'simcity2')}>Load Sim City 2000</button>
+                <li>
+                        <button onClick={() => this.props.dosBoxCommand('fullscreen')}>Fullscreen</button>
                     </li>
                     <li>
                         <button onClick={() => this.props.dosBoxCommand('stop')}>Stop</button>
                     </li>
                     <li>
                         <button onClick={() => this.props.dosBoxCommand('screenshot')}>Take Screenshot</button>
+                    </li>
+                    <li>
+                        <button onClick={() => this.props.dosBoxCommand('cycledown')}>Decrease CPU</button>
+                    </li>
+                    <li>
+                        <button onClick={() => this.props.dosBoxCommand('cycleup')}>Increase CPU</button>
                     </li>
                 </ul>
             </div>
