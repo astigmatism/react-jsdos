@@ -25,7 +25,12 @@ class TitleSelection extends React.Component {
 
         return (
             <div className='titleSelection'>
-                {titles}
+                <ul></ul>
+                <ul></ul>
+                <ul></ul>
+                <ul></ul>
+                <ul></ul>
+                <ul></ul>
             </div>
         )
     }
