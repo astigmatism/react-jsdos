@@ -9,16 +9,21 @@ class Title extends React.Component {
     this.handleClick = this.handleClick.bind(this)
   }
 
+  componentDidMount() {
+
+  }
+
   handleClick() {
     this.props.loadTitle(this.props.data)
   }
 
   render() {
+
     return (
-      <div className='titleTile' onClick={this.handleClick}>
-        {this.props.data.thumbs.length > 0 ? <img width='100%' src={this.props.data.thumbs[0]} alt='' /> : ''}
-        {this.props.data.title}
-      </div>
+      <li ref='titleTile' className='titleTile' onClick={this.handleClick}>
+          {this.props.data.thumbs.length > 0 ? <img width='100%' src={this.props.data.thumbs[0]} alt='' /> : ''}
+          {this.props.data.title}
+      </li>
     )
   }
 }

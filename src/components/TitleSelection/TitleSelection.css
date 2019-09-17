@@ -1,6 +1,6 @@
 .titleSelection {
   height: auto;
-  padding: 10px;
+  padding-top: 5px;
 }
 
 .titleSelection ul {
@@ -8,5 +8,5 @@
   vertical-align: top;
   width: 157.333px;
   padding: 0;
-  margin: 0;
+  margin: 0 5px;
 }
