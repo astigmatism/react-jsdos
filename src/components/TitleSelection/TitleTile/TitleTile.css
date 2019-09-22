@@ -21,3 +21,8 @@
 .titleTile:active {
   transform: scale(0.95);
 }
+
+.titleTile .caption {
+  padding: 5px;
+  font-size: 11pt;
+}

@@ -22,7 +22,9 @@ class Title extends React.Component {
     return (
       <li ref='titleTile' className='titleTile' onClick={this.handleClick}>
           {this.props.data.thumbs.length > 0 ? <img width='100%' src={this.props.data.thumbs[0]} alt='' /> : ''}
-          {this.props.data.title}
+          <div className='caption'>
+            {this.props.data.title}
+          </div>
       </li>
     )
   }
