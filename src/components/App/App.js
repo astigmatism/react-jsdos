@@ -55,7 +55,7 @@ class App extends React.Component {
           <JsDos ref='jsdos' dosBoxResolution={dosBoxResolution} activeTitle={activeTitle} />
             <div className='content'>
               <TitleSelection loadTitle={this.loadTitle} />
-              <Tools handleResolutionChange={this.handleResolutionChange} loadTitle={this.loadTitle} dosBoxCommand={this.dosBoxCommand} />
+              <Tools handleResolutionChange={this.handleResolutionChange} activeTitle={activeTitle} loadTitle={this.loadTitle} dosBoxCommand={this.dosBoxCommand} />
             </div>
         </div>
       </div>

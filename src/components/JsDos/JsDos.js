@@ -135,8 +135,15 @@ class JsDos extends React.Component {
                     blocksize=128
                     prebuffer=5000
                     `
+                    let autoexec = `
+                    [autoexec]
+                    @ECHO OFF
+                    cls
+                    mount c .
+                    c:
+                    `
 
-                    fs.createFile('dosbox.conf', conf + titleData.conf)
+                    fs.createFile('dosbox.conf', conf + titleData.conf + autoexec + titleData.autoexec)
                     main(["-conf", "dosbox.conf"]).then((ci) => {
 
                         self.setState({
