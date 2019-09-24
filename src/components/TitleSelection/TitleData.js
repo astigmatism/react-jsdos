@@ -142,6 +142,8 @@ const TitleData = [
     autoexec: `
       imgmount d "c:\\magicc~1.bin" -t iso
       d:
+      carpet
+      exit
     `,
     canvasImageRendering: null,
     thumbs: [
