@@ -151,9 +151,9 @@ class Loading extends React.Component {
       case this.internalState.downloading:
           return <div className='message'>preparing</div>
       case this.internalState.extractingFolder:
-          return <div className='message'>installing</div>
+          return <div className='message'>extracting</div>
       case this.internalState.exractingRoot:
-          if (this.props.percentage > 95 || this.props.percentage < 5) {
+          if (this.props.percentage > 95) {
 
             return <div className='message'>installing</div>
           }
