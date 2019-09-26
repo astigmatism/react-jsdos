@@ -153,10 +153,13 @@ class Loading extends React.Component {
       case this.internalState.extractingFolder:
           return <div className='message'>extracting</div>
       case this.internalState.exractingRoot:
-          if (this.props.percentage > 95) {
-
+          if (this.props.percentage < 1) {
+            return <div className='message'>extracting</div>
+          } else if (this.props.percentage > 95) {
             return <div className='message'>installing</div>
           }
+
+
           return <div className='message'>{this.props.percentage}% loaded</div>
       case this.internalState.resizeOnStart:
         return  <div className='message'>ready!</div>
