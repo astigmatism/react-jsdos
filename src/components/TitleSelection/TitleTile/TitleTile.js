@@ -19,9 +19,13 @@ class Title extends React.Component {
 
   render() {
 
+    let imgStyle = {
+      backgroundImage: 'url(' + this.props.data.thumbs[0] + ')'
+    }
+
     return (
       <li ref='titleTile' className='titleTile' onClick={this.handleClick}>
-          {this.props.data.thumbs.length > 0 ? <img width='100%' src={this.props.data.thumbs[0]} alt='' /> : ''}
+          {this.props.data.thumbs.length > 0 ? <div className='image' width='100%' style={imgStyle} alt='' /> : ''}
           <div className='caption'>
             {this.props.data.title}
           </div>

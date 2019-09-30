@@ -22,7 +22,13 @@
   transform: scale(0.95);
 }
 
+.titleTile .image {
+  height: 118px;
+  background-repeat: no-repeat;
+  background-size: 157.333px 118px;
+}
+
 .titleTile .caption {
-  padding: 5px;
-  font-size: 11pt;
+  padding: 0px;
+  font-size: 10pt;
 }

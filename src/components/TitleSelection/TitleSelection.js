@@ -15,12 +15,20 @@ class TitleSelection extends React.Component {
 
     render() {
 
+        TitleData.sort((a, b) => {
+            return ('' + a.title).localeCompare(b.title);
+        })
+
+        let filtered = TitleData.filter((item) => {
+            return !item.hidden            
+        })
+
         const buckets = [[], [], [], [], [], []]
-        for (let i = 0; i < TitleData.length; ++i) {
+        for (let i = 0; i < filtered.length; ++i) {
             buckets[i % buckets.length].push(
                 <TitleTile 
-                    key={TitleData[i].key}
-                    data={TitleData[i]}
+                    key={filtered[i].key}
+                    data={filtered[i]}
                     loadTitle={this.props.loadTitle}
                 />
 

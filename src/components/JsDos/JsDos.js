@@ -2,6 +2,8 @@ import React from 'react';
 import './JsDos.css';
 import Loading from './Loading/Loading'
 import Welcome from './Welcome/Welcome'
+import MenuContent from './DosMenu/MenuContent'
+import StringToArrayBuffer from '../Utility/StringToArrayBuffer'
 
 class JsDos extends React.Component {
 
@@ -129,27 +131,17 @@ class JsDos extends React.Component {
             })
             fs.extract('games/' + titleData.key + '/b.zip', '/' + titleData.bfolder).then(() => {
                 self.extractFilesToRoot(fs, titleData).then(() => {
-                    
-                    let conf = `
-                    [mixer]
-                    blocksize=128
-                    prebuffer=5000
-                    `
-                    let autoexec = `
-                    [autoexec]
-                    @ECHO OFF
-                    cls
-                    mount c .
-                    c:
-                    `
+                    self.buildDosMenu(fs, titleData).then(() => {
+                        self.buildConfFile(fs, titleData).then(() => {
 
-                    fs.createFile('dosbox.conf', conf + titleData.conf + autoexec + titleData.autoexec)
-                    main(["-conf", "dosbox.conf"]).then((ci) => {
+                            main(["-conf", "dosbox.conf"]).then((ci) => {
 
-                        self.setState({
-                            operation: self.internalState.resizeOnStart,
-                            percentage: 100,
-                            commandInterface: ci
+                                self.setState({
+                                    operation: self.internalState.resizeOnStart,
+                                    percentage: 100,
+                                    commandInterface: ci
+                                })
+                            })
                         })
                     })
                 })
@@ -170,6 +162,37 @@ class JsDos extends React.Component {
         catch(e) {
             console.log('no root file to extract')
         }
+    }
+
+    buildDosMenu = async (fs, titleData) => {
+
+        if (titleData.menu == null)
+            return
+
+        //debugger
+
+        //let contents = MenuContent.replace('{title}', titleData.menu.title)
+        //contents = contents.replace('{selections}', titleData.menu.selections)
+
+        let ab = StringToArrayBuffer(MenuContent)
+
+        return await fs.createFile('MSDOS.MEN', ab)
+    }
+
+    buildConfFile = async (fs, titleData) => {
+        let conf = `
+        [mixer]
+        blocksize=128
+        prebuffer=5000
+        `
+        let autoexec = `
+        [autoexec]
+        @ECHO OFF
+        cls
+        mount c .
+        c:
+        `
+        return await fs.createFile('dosbox.conf', conf + titleData.conf + autoexec + titleData.autoexec)
     }
 
     handleWrapperTransitionEnd() {

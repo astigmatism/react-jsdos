@@ -1,0 +1,74 @@
+MENU DEFINITION FILE created by Dos Menu Creator ver 1.0
+on 09-28-2019 at 10:39:53.
+--------------------------------------------------------
+
+ 8 
+ 0 
+ 177 
+YES
+ 2 
+ 3 
+ 4 
+ 76 
+ 1 
+ 1 
+ 1 
+ 2 
+ 3 
+  WarCraft II: Tides of Darkness Main Menu
+YES
+ 8 
+ 10 
+ 17 
+ 70 
+ 5 
+ 5 
+ 2 
+ 7 
+NO
+NO 
+ 21 
+ 5 
+ 23 
+ 76 
+ 1 
+ 1 
+ 1 
+ 0 
+ 3 
+ 3 
+  Msdos.games Copyright 2019
+YES
+ 4 
+ 15 
+ 3 
+ 40 
+  Created by Eric G 2019  
+ 2 
+ 13 
+ 3 
+ 15 
+NO 
+ 1 
+ 0 
+ 1 
+ 0 
+NO
+YES
+ 3 
+ 1 
+ 2 
+ 22 
+ 61 
+YES
+ 3 
+ 1 
+ 0 
+ 22 
+ 50 
+ 2329 
+
+Play WarCraft II: Tides of Darkness
+C:\WarcrafD\war2.exe
+WarCraft II Editor
+C:\WarcrafD\WAR2EDIT.exe
