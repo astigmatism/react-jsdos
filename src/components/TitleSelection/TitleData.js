@@ -108,7 +108,6 @@ const TitleData = [
     conf: ``,
     autoexec: `
       cd simcity2
-      cd menu
       cls
       runmenu msdos
       exit
@@ -347,7 +346,7 @@ const TitleData = [
       imgmount d "c:\\warcraft.cue" -t iso
       cd WarCraft
       cls
-      pick.bat
+      runmenu msdos
       exit
     `,
     canvasImageRendering: null,
