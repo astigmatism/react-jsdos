@@ -1,9 +1,10 @@
-.videotools-ul, .dostools-ul {
+.dostools-ul {
     list-style: none;
-    padding: 0;
+    padding: 5px 0px;
     margin: 0;
 }
 
-.videotools-ul li, .dostools-ul li {
+.dostools-ul li {
     display: inline-block;
+    margin-left: 5px;
 }

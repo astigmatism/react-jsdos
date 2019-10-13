@@ -30,6 +30,7 @@ class TitleSelection extends React.Component {
                     key={filtered[i].key}
                     data={filtered[i]}
                     loadTitle={this.props.loadTitle}
+                    iteration={i}
                 />
 
             )

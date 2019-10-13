@@ -9,26 +9,30 @@
 
   background-color: #eee;
   cursor: pointer;
-
-  transition:All 100ms ease-out;
-  -webkit-transition:All 100ms ease-out;
-  -moz-transition:All 100ms ease-out;
-  -o-transition:All 100ms ease-out;
   
   margin-top: 10px;
-}
-
-.titleTile:active {
-  transform: scale(0.95);
 }
 
 .titleTile .image {
   height: 118px;
   background-repeat: no-repeat;
   background-size: 157.333px 118px;
+
+  transition:All 100ms ease-out;
+  -webkit-transition:All 100ms ease-out;
+  -moz-transition:All 100ms ease-out;
+  -o-transition:All 100ms ease-out;
+}
+
+.titleTile .image:active {
+  transform: scale(0.95);
 }
 
 .titleTile .caption {
   padding: 0px;
   font-size: 10pt;
+}
+
+.contextMenu ul {
+  margin: 0;
 }

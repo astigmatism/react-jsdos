@@ -1,7 +1,7 @@
 
 .header {
     padding: 5px 0px;
-    height: 50px;
+    height: 60px;
     position: relative;
 }
 
@@ -20,6 +20,20 @@
     margin: 0;
     text-align: left;
     font-size: 24pt;
+    font-weight: 600;
+    line-height: 50px;
+}
+
+.header h1 .d {
+    color: #cc262d;
+}
+
+.header h1 .o {
+    color: #65236f;
+}
+
+.header h1 .s {
+    color: #f4e544;
 }
 
 .header .search {
@@ -30,7 +44,7 @@
 }
   
 .header .search input {
-    height: 20px;
+    height: 30px;
     width: 300px;
     background-image: url('/svg/search.svg');
     background-size: 15px;

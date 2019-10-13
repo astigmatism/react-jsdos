@@ -1,7 +1,7 @@
 import React from 'react';
 import './Tools.css';
-import ResolutionButton from './ResolutionButton'
-import ResolutionData from './ResolutionData'
+import { Button } from 'reactstrap';
+import ResolutionDropdown from './ResolutionDropdown'
 
 class Tools extends React.Component {
 
@@ -62,37 +62,26 @@ class Tools extends React.Component {
 
     render() {
 
-        const buttonComponents = ResolutionData.map(resolutionData => 
-
-            <ResolutionButton 
-                key={resolutionData.id} 
-                name={resolutionData.name} 
-                width={resolutionData.width} 
-                height={resolutionData.height} 
-                handleResolutionChange={this.props.handleResolutionChange}
-                />
-        );
-
         return (
             <div>
-                <ul className='videotools-ul'>
-                    {buttonComponents}
-                </ul>
                 <ul className='dostools-ul'>
-                <li>
-                        <button onClick={() => this.props.dosBoxCommand('fullscreen')}>Fullscreen</button>
+                    <li>
+                        <ResolutionDropdown handleResolutionChange={this.props.handleResolutionChange}></ResolutionDropdown>
                     </li>
                     <li>
-                        <button onClick={() => this.props.dosBoxCommand('stop')}>Stop</button>
+                        <Button onClick={() => this.props.dosBoxCommand('stop')} color="danger">Stop Game</Button>{' '}
                     </li>
                     <li>
-                        <button onClick={() => this.props.dosBoxCommand('screenshot')}>Take Screenshot</button>
+                        <Button onClick={() => this.props.dosBoxCommand('fullscreen')} color="primary">Fullscreen</Button>{' '}
                     </li>
                     <li>
-                        <button onClick={() => this.props.dosBoxCommand('cycledown')}>Decrease CPU</button>
+                        <Button onClick={() => this.props.dosBoxCommand('screenshot')} color="info">Take Screenshot</Button>{' '}
                     </li>
                     <li>
-                        <button onClick={() => this.props.dosBoxCommand('cycleup')}>Increase CPU</button>
+                        <Button onClick={() => this.props.dosBoxCommand('cycledown')} color="warning">Decrease CPU Speed</Button>{' '}
+                    </li>
+                    <li>
+                        <Button onClick={() => this.props.dosBoxCommand('cycleup')} color="success">Increase CPU Speed</Button>{' '}
                     </li>
                 </ul>
                 <div>

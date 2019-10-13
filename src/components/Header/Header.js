@@ -20,7 +20,7 @@ class Header extends React.Component {
         return (
             <div className='header'>
                 <div className='titleWrapper'>
-                    <h1>msdos.games</h1>
+                    <h1>ms<span className='d'>d</span><span className='o'>o</span><span className='s'>s</span>.games</h1>
                 </div>
                 <div className='search'>
                     <input ref='input' type='input' defaultValue='Search' onFocus={this.handleFocus} onBlur={this.handleBlur} />
