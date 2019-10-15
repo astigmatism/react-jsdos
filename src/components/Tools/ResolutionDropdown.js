@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import './ToolTray.css'
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import ResolutionConfiguration from '../App/Conf/ResolutionConfiguration'
 
@@ -13,7 +14,7 @@ const ResolutionDropdown = (props) => {
     )
 
   return (
-    <ButtonDropdown isOpen={dropdownOpen} toggle={toggle} size="sm">
+    <ButtonDropdown className='tooltraybutton' isOpen={dropdownOpen} toggle={toggle} size="sm">
       <DropdownToggle caret>
         Resolution
       </DropdownToggle>

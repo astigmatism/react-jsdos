@@ -1,5 +1,4 @@
 import React from 'react'
-import * as THREE from 'three';
 
 class Welcome extends React.Component {
 

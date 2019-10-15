@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Animated } from 'react-animated-css'
 import './TitleTile.css'
-import TitleTooltip from './TitleTooltip'
-import ContextMenu from './ContextMenu'
+import ContextMenu from './ContextMenu/ContextMenu'
 
 class Title extends React.Component {
 

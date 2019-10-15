@@ -2,26 +2,32 @@ import React from 'react'
 import './TitleSelection.css'
 import TitleData from './TitleData'
 import TitleTile from './TitleTile/TitleTile'
+import ShuffleArray from '../Utility/ShuffleArray'
 
 class TitleSelection extends React.Component {
-
-    constructor(props) {
-        super(props)
-    }
 
     componentDidMount() {
         
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        return false
+    }
+
     render() {
 
+        /*
+        //alphabetize
         TitleData.sort((a, b) => {
             return ('' + a.title).localeCompare(b.title);
         })
+        */
 
         let filtered = TitleData.filter((item) => {
             return !item.hidden            
         })
+
+        filtered = ShuffleArray(filtered)
 
         const buckets = [[], [], [], [], [], []]
         for (let i = 0; i < filtered.length; ++i) {

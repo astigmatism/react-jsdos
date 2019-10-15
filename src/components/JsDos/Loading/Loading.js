@@ -39,7 +39,7 @@ class Loading extends React.Component {
         scene = new THREE.Scene();
         // geometry
         var vector = new THREE.Vector4();
-        var triangles = 1;
+        //var triangles = 1;
         _instances = 500;
         var positions = [];
         var offsets = [];
@@ -163,6 +163,8 @@ class Loading extends React.Component {
           return <div className='message'>{this.props.percentage}% loaded</div>
       case this.internalState.resizeOnStart:
         return  <div className='message'>ready!</div>
+      default:
+        return <div></div>
     }
   }
 

@@ -2,7 +2,8 @@ import React from 'react';
 import './App.css'
 import Header from '../Header/Header'
 import JsDos from '../JsDos/JsDos'
-import Tools from '../Tools/Tools'
+import DevTools from '../Tools/DevTools'
+import ToolTray from '../Tools/ToolTray'
 import TitleSelection from '../TitleSelection/TitleSelection'
 
 class App extends React.Component {
@@ -11,12 +12,20 @@ class App extends React.Component {
     super()
     this.state = {
       dosBoxResolution: JSON.parse(localStorage.getItem('App.dosBoxResolution')) || [640, 480],
-      activeTitle: null
+      activeTitle: null,
+      jsDosState: null
     }
 
     this.handleResolutionChange = this.handleResolutionChange.bind(this)
     this.loadTitle = this.loadTitle.bind(this)
     this.dosBoxCommand = this.dosBoxCommand.bind(this)
+    this.handleJsDosStateChange = this.handleJsDosStateChange.bind(this)
+  }
+
+  handleJsDosStateChange (state) {
+    this.setState({
+      jsDosState: state
+    })
   }
 
   loadTitle (titleData) {
@@ -52,10 +61,11 @@ class App extends React.Component {
       <div className='App'>
         <div className='fixedWidthContainer'>
           <Header />
-          <JsDos ref='jsdos' dosBoxResolution={dosBoxResolution} activeTitle={activeTitle} />
+          <JsDos ref='jsdos' dosBoxResolution={dosBoxResolution} activeTitle={activeTitle} reportState={this.handleJsDosStateChange} />
+            <ToolTray jsDosState={this.state.jsDosState} handleResolutionChange={this.handleResolutionChange} dosBoxCommand={this.dosBoxCommand}></ToolTray>
             <div className='content'>
-              <Tools handleResolutionChange={this.handleResolutionChange} activeTitle={activeTitle} loadTitle={this.loadTitle} dosBoxCommand={this.dosBoxCommand} />
               <TitleSelection loadTitle={this.loadTitle} />
+              <DevTools activeTitle={activeTitle} loadTitle={this.loadTitle} />
             </div>
         </div>
       </div>

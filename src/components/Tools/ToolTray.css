@@ -1,0 +1,18 @@
+div.tooltray {
+
+}
+
+div.tooltray ul {
+  list-style: none;
+  padding: 5px 0px;
+  margin: 0;
+}
+
+div.tooltray li {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+div.tooltray .tooltraybutton {
+  width: 150px;
+}

@@ -3,10 +3,6 @@ import './Header.css'
 
 class Header extends React.Component {
 
-    constructor(props) {
-        super(props)
-    }
-
     handleFocus(e) {
         e.target.value = ''
       }

@@ -1,11 +1,7 @@
 import React from 'react';
 import './JsDos.css';
 import Loading from './Loading/Loading'
-import Welcome from './Welcome/Welcome'
-import MenuContent from './DosMenu/MenuContent'
-import StringToArrayBuffer from '../Utility/StringToArrayBuffer'
 import SoundConfiguration from '../App/Conf/SoundConfiguration'
-import TitleData from '../TitleSelection/TitleData';
 
 class JsDos extends React.Component {
 
@@ -36,6 +32,7 @@ class JsDos extends React.Component {
         this.stopDos = this.stopDos.bind(this)
         this.handleWrapperTransitionEnd = this.handleWrapperTransitionEnd.bind(this)
         this.handleCanvasTransitionEnd = this.handleCanvasTransitionEnd.bind(this)
+        this.setOperation = this.setOperation.bind(this)
     }
 
     componentDidMount() {
@@ -43,8 +40,6 @@ class JsDos extends React.Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-
-        console.log(nextState)
 
         if (nextState.operation === this.internalState.idle && nextProps.activeTitle !== null) {
             this.startDos(nextProps.activeTitle)
@@ -57,6 +52,11 @@ class JsDos extends React.Component {
         }
 
         return true
+    }
+
+    setOperation(stateObject) {
+        this.props.reportState(stateObject.operation)
+        this.setState(stateObject)
     }
 
     handleDosBoxCommand(command) {
@@ -96,7 +96,7 @@ class JsDos extends React.Component {
 
     async stopDos() {
         await this.state.commandInterface.exit()
-        this.setState({
+        this.setOperation({
             commandInterface: null,
             operation: this.internalState.stopping
         })
@@ -106,7 +106,7 @@ class JsDos extends React.Component {
         
         let self = this
 
-        this.setState({
+        this.setOperation({
             operation: this.internalState.downloading
         })
 
@@ -128,7 +128,7 @@ class JsDos extends React.Component {
             }
         }).ready((fs, main) => {
 
-            this.setState({
+            this.setOperation({
                 operation: this.internalState.extractingFolder
             })
             fs.extract('games/' + titleData.key + '/game.zip', '/' + titleData.installFolder).then(() => {
@@ -138,7 +138,7 @@ class JsDos extends React.Component {
 
                             main(["-conf", "dosbox.conf"]).then((ci) => {
 
-                                self.setState({
+                                self.setOperation({
                                     operation: self.internalState.resizeOnStart,
                                     percentage: 100,
                                     commandInterface: ci
@@ -156,7 +156,7 @@ class JsDos extends React.Component {
 
     extractCdImages = async (fs, titleData) => {
         try {
-            this.setState({
+            this.setOperation({
                 operation: this.internalState.exractingRoot
             })
             return await fs.extract('games/' + titleData.key + '/cd.zip');
@@ -205,12 +205,12 @@ class JsDos extends React.Component {
 
     handleWrapperTransitionEnd() {
         if (this.state.operation === this.internalState.resizeOnStart) {
-            this.setState({
+            this.setOperation({
                 operation: this.internalState.starting
             })
         }
         if (this.state.operation === this.internalState.resizeOnExit) {
-            this.setState({
+            this.setOperation({
                 operation: this.internalState.idle
             })
         }
@@ -218,12 +218,12 @@ class JsDos extends React.Component {
 
     handleCanvasTransitionEnd() {
         if (this.state.operation === this.internalState.stopping) {
-            this.setState({
+            this.setOperation({
                 operation: this.internalState.resizeOnExit
             })
         }
         if (this.state.operation === this.internalState.starting) {
-            this.setState({
+            this.setOperation({
                 operation: this.internalState.playing,
                 percentage: 0
             })
@@ -270,6 +270,8 @@ class JsDos extends React.Component {
                 this.resolutionClass = ''
                 this.refs.jsdos.style.height = ''
                 break
+            default:
+            
         }
 
         return (
