@@ -65,7 +65,7 @@ class App extends React.Component {
             <ToolTray jsDosState={this.state.jsDosState} handleResolutionChange={this.handleResolutionChange} dosBoxCommand={this.dosBoxCommand}></ToolTray>
             <div className='content'>
               <TitleSelection loadTitle={this.loadTitle} />
-              <DevTools activeTitle={activeTitle} loadTitle={this.loadTitle} />
+              { /* <DevTools activeTitle={activeTitle} loadTitle={this.loadTitle} /> */}
             </div>
         </div>
       </div>
