@@ -1,19 +1,19 @@
 import React, { useState } from 'react'
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
-import ResolutionData from './ResolutionData'
+import ResolutionConfiguration from '../App/Conf/ResolutionConfiguration'
 
 const ResolutionDropdown = (props) => {
   const [dropdownOpen, setOpen] = useState(false);
 
   const toggle = () => setOpen(!dropdownOpen);
 
-  const buttonComponents = ResolutionData.map(resolutionData => 
+  const buttonComponents = ResolutionConfiguration.map(resolutionData => 
 
-        <DropdownItem onClick={() => props.handleResolutionChange(resolutionData.width, resolutionData.height)}>{resolutionData.width} x {resolutionData.height}</DropdownItem>
+        <DropdownItem key={resolutionData.id} onClick={() => props.handleResolutionChange(resolutionData.width, resolutionData.height)}>{resolutionData.width} x {resolutionData.height}</DropdownItem>
     )
 
   return (
-    <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
+    <ButtonDropdown isOpen={dropdownOpen} toggle={toggle} size="sm">
       <DropdownToggle caret>
         Resolution
       </DropdownToggle>

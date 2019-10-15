@@ -4,6 +4,8 @@ import Loading from './Loading/Loading'
 import Welcome from './Welcome/Welcome'
 import MenuContent from './DosMenu/MenuContent'
 import StringToArrayBuffer from '../Utility/StringToArrayBuffer'
+import SoundConfiguration from '../App/Conf/SoundConfiguration'
+import TitleData from '../TitleSelection/TitleData';
 
 class JsDos extends React.Component {
 
@@ -129,9 +131,9 @@ class JsDos extends React.Component {
             this.setState({
                 operation: this.internalState.extractingFolder
             })
-            fs.extract('games/' + titleData.key + '/b.zip', '/' + titleData.bfolder).then(() => {
-                self.extractFilesToRoot(fs, titleData).then(() => {
-                    self.buildDosMenu(fs, titleData).then(() => {
+            fs.extract('games/' + titleData.key + '/game.zip', '/' + titleData.installFolder).then(() => {
+                self.extractCdImages(fs, titleData).then(() => {
+                    self.extractSoundConfiguration(fs, titleData).then(() => {
                         self.buildConfFile(fs, titleData).then(() => {
 
                             main(["-conf", "dosbox.conf"]).then((ci) => {
@@ -152,31 +154,31 @@ class JsDos extends React.Component {
         })
     }
 
-    extractFilesToRoot = async (fs, titleData) => {
+    extractCdImages = async (fs, titleData) => {
         try {
             this.setState({
                 operation: this.internalState.exractingRoot
             })
-            return await fs.extract('games/' + titleData.key + '/a.zip');
+            return await fs.extract('games/' + titleData.key + '/cd.zip');
         }
         catch(e) {
             console.log('no root file to extract')
         }
     }
 
-    buildDosMenu = async (fs, titleData) => {
-
-        if (titleData.menu == null)
-            return
-
-        //debugger
-
-        //let contents = MenuContent.replace('{title}', titleData.menu.title)
-        //contents = contents.replace('{selections}', titleData.menu.selections)
-
-        let ab = StringToArrayBuffer(MenuContent)
-
-        return await fs.createFile('MSDOS.MEN', ab)
+    extractSoundConfiguration = async (fs, titleData) => {
+        
+        switch (titleData.soundSelection) {
+            case 'gus': 
+                try {
+                    return await fs.extract('sound/gus.zip', '/ultrasnd');
+                }
+                catch(e) {
+                }
+                break
+            default:
+                break
+        }
     }
 
     buildConfFile = async (fs, titleData) => {
@@ -185,6 +187,9 @@ class JsDos extends React.Component {
         blocksize=128
         prebuffer=5000
         `
+
+        conf += SoundConfiguration[titleData.soundSelection].conf
+
         let autoexec = `
         [autoexec]
         @ECHO OFF
@@ -192,7 +197,10 @@ class JsDos extends React.Component {
         mount c .
         c:
         `
-        return await fs.createFile('dosbox.conf', conf + titleData.conf + autoexec + titleData.autoexec)
+
+        let titleAutoExec = titleData.autoexec.replace('{soundSelection}', titleData.soundSelection)
+
+        return await fs.createFile('dosbox.conf', conf + titleData.conf + autoexec + titleAutoExec)
     }
 
     handleWrapperTransitionEnd() {

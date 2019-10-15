@@ -16,7 +16,7 @@ class Tools extends React.Component {
         if (this.props.activeTitle === null)
             return
 
-        let key = '/' + this.props.activeTitle.bfolder
+        let key = '/' + this.props.activeTitle.installFolder
         let file = this.refs.filepath.value
         let request = window.indexedDB.open(key)
         let db = null
@@ -69,19 +69,19 @@ class Tools extends React.Component {
                         <ResolutionDropdown handleResolutionChange={this.props.handleResolutionChange}></ResolutionDropdown>
                     </li>
                     <li>
-                        <Button onClick={() => this.props.dosBoxCommand('stop')} color="danger">Stop Game</Button>{' '}
+                        <Button onClick={() => this.props.dosBoxCommand('stop')} color="danger" size="sm">Stop Game</Button>{' '}
                     </li>
                     <li>
-                        <Button onClick={() => this.props.dosBoxCommand('fullscreen')} color="primary">Fullscreen</Button>{' '}
+                        <Button onClick={() => this.props.dosBoxCommand('fullscreen')} color="primary" size="sm">Fullscreen</Button>{' '}
                     </li>
                     <li>
-                        <Button onClick={() => this.props.dosBoxCommand('screenshot')} color="info">Take Screenshot</Button>{' '}
+                        <Button onClick={() => this.props.dosBoxCommand('screenshot')} color="info" size="sm">Take Screenshot</Button>{' '}
                     </li>
                     <li>
-                        <Button onClick={() => this.props.dosBoxCommand('cycledown')} color="warning">Decrease CPU Speed</Button>{' '}
+                        <Button onClick={() => this.props.dosBoxCommand('cycledown')} color="warning" size="sm">Decrease CPU Speed</Button>{' '}
                     </li>
                     <li>
-                        <Button onClick={() => this.props.dosBoxCommand('cycleup')} color="success">Increase CPU Speed</Button>{' '}
+                        <Button onClick={() => this.props.dosBoxCommand('cycleup')} color="success" size="sm">Increase CPU Speed</Button>{' '}
                     </li>
                 </ul>
                 <div>

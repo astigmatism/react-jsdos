@@ -36,8 +36,6 @@ class TitleSelection extends React.Component {
             )
         }
 
-        console.log(buckets)
-
         return (
             <div className='titleSelection'>
                 <ul>{buckets[0]}</ul>
