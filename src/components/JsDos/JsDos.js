@@ -155,11 +155,18 @@ class JsDos extends React.Component {
     }
 
     extractCdImages = async (fs, titleData) => {
+
+        let cdFile = 'cd.zip'
+
+        if (titleData.exeSelection && titleData.exeSelection.cdFile) {
+            cdFile = titleData.exeSelection.cdFile
+        }
+
         try {
             this.setOperation({
                 operation: this.internalState.exractingRoot
             })
-            return await fs.extract('games/' + titleData.key + '/cd.zip');
+            return await fs.extract('games/' + titleData.key + '/' + cdFile);
         }
         catch(e) {
             console.log('no root file to extract')
@@ -199,7 +206,7 @@ class JsDos extends React.Component {
         c:
         `
 
-        let titleAutoExec = titleData.autoexec.replace('{soundSelection}', titleData.soundSelection)
+        let titleAutoExec = titleData.autoexec.replace('{soundSelection}', titleData.soundSelection).replace('{exeSelection}', titleData.exeSelection.id)
 
         return await fs.createFile('dosbox.conf', conf + titleData.conf + autoexec + titleAutoExec)
     }

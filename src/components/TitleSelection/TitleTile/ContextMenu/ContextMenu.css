@@ -1,5 +1,6 @@
 .contextMenu {
   background: #d9dbdd;
+  font-size: 10pt;
 }
 
 .contextMenu .contextMenuContent {
@@ -13,27 +14,19 @@
   margin: 0;
 }
 
-.contextMenu .year {
-  font-size: 10pt;
-}
+.contextMenu .genres, .contextMenu .perspectives, .contextMenu .year, .contextMenu .sound {
+  color: #11527d;
+} 
 
-.contextMenu .genre {
-  font-size: 10pt;
-}
-
-.contextMenu .perspective {
-  font-size: 10pt;
-}
-
-.contextMenu .sound {
-  font-size: 10pt;
-}
-
-.contextMenu .soundButton {
+.contextMenu .exeButton {
   width: 140px;
   margin-top: 5px;
 }
 
-.contextMenu .soundButtons {
-  padding-top: 5px;
+.contextMenu .soundButton {
+  width: 140px;
+}
+
+.contextMenu .soundButtons, .contextMenu .exeButtons, .contextMenu .play {
+  margin-top: 10px;
 }
