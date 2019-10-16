@@ -2,7 +2,7 @@ import React from 'react'
 import './TitleSelection.css'
 import TitleData from './TitleData'
 import TitleTile from './TitleTile/TitleTile'
-import ShuffleArray from '../Utility/ShuffleArray'
+//import ShuffleArray from '../Utility/ShuffleArray'
 
 class TitleSelection extends React.Component {
 
@@ -27,7 +27,7 @@ class TitleSelection extends React.Component {
             return !item.hidden            
         })
 
-        filtered = ShuffleArray(filtered)
+        //filtered = ShuffleArray(filtered)
 
         const buckets = [[], [], [], [], [], []]
         for (let i = 0; i < filtered.length; ++i) {

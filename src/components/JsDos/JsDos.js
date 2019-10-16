@@ -132,8 +132,8 @@ class JsDos extends React.Component {
                 operation: this.internalState.extractingFolder
             })
             fs.extract('games/' + titleData.key + '/game.zip', '/' + titleData.installFolder).then(() => {
-                self.extractCdImages(fs, titleData).then(() => {
-                    self.extractSoundConfiguration(fs, titleData).then(() => {
+                self.extractSoundConfiguration(fs, titleData).then(() => {
+                    self.extractCdImages(fs, titleData).then(() => {
                         self.buildConfFile(fs, titleData).then(() => {
 
                             main(["-conf", "dosbox.conf"]).then((ci) => {
@@ -174,6 +174,7 @@ class JsDos extends React.Component {
                     return await fs.extract('sound/gus.zip', '/ultrasnd');
                 }
                 catch(e) {
+                    console.log(e)
                 }
                 break
             default:

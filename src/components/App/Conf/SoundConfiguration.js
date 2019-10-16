@@ -1,6 +1,6 @@
 const SoundConfiguration = {
     sb16: {
-        name: 'Sound Blaster 16',
+        name: 'Sound Blaster',
         color: 'success',
         conf: `
         [sblaster]
@@ -26,6 +26,7 @@ const SoundConfiguration = {
         gusirq=5
         gusdma=3
         ultradir=c:\\ultrasnd
+        # dosbox continues to use the sb emulation for cd audio so it cannot be disabled
         `
     },
     pcs: {
@@ -46,6 +47,17 @@ const SoundConfiguration = {
         conf:`
         [sblaster]
         sbtype=gb
+        `
+    },
+    tandy: {
+        name: 'Tandy',
+        color: 'secondary',
+        conf: `
+        [dosbox]
+        machine=tandy
+        [speaker]
+        tandy=auto
+        tandyrate=44100
         `
     }
 }
