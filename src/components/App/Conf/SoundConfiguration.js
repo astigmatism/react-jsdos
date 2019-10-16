@@ -59,6 +59,22 @@ const SoundConfiguration = {
         tandy=auto
         tandyrate=44100
         `
+    },
+    sbp2: {
+        name: 'Sound Blaster',
+        color: 'success',
+        conf: `
+        [sblaster]
+        sbtype=sbpro2
+        sbbase=220
+        irq=7
+        dma=1
+        hdma=5
+        sbmixer=true
+        oplmode=auto
+        oplemu=default
+        oplrate=44100
+        `
     }
 }
 
