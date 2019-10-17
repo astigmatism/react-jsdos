@@ -27,8 +27,8 @@ class Title extends React.Component {
 
   render() {
 
-    const animDelay = this.props.iteration * 70
-    const animDuration = 1000
+    const animDelay = ((this.props.iteration % 6) + (this.props.iteration / 6)) * 120
+    const animDuration = 1200
 
     let imgStyle = {
       backgroundImage: 'url(' + this.props.data.thumbs[0] + ')'

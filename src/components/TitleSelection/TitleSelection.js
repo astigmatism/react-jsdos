@@ -16,12 +16,11 @@ class TitleSelection extends React.Component {
 
     render() {
 
-        /*
         //alphabetize
         TitleData.sort((a, b) => {
             return ('' + a.title).localeCompare(b.title);
         })
-        */
+        
 
         let filtered = TitleData.filter((item) => {
             return !item.hidden            
