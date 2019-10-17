@@ -37,13 +37,13 @@ const SoundConfiguration = {
     },
     cda: {
         name: 'CD Audio',
-        color: 'secondary',
+        color: 'primary',
         conf: `
         `
     },
     cgb: {
         name: 'Game Blaster',
-        color: 'primary',
+        color: 'success',
         conf:`
         [sblaster]
         sbtype=gb

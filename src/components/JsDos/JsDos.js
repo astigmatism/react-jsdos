@@ -206,7 +206,11 @@ class JsDos extends React.Component {
         c:
         `
 
-        let titleAutoExec = titleData.autoexec.replace('{soundSelection}', titleData.soundSelection).replace('{exeSelection}', titleData.exeSelection.id)
+        let titleAutoExec = titleData.autoexec.replace('{soundSelection}', titleData.soundSelection)
+
+        if (titleData.exeSelection) {
+            titleAutoExec = titleAutoExec.replace('{exeSelection}', titleData.exeSelection.id)
+        }
 
         return await fs.createFile('dosbox.conf', conf + titleData.conf + autoexec + titleAutoExec)
     }

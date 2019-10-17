@@ -46,7 +46,7 @@ class ContextMenu extends React.Component {
             soundOptions = <SoundOption data={this.props.data} onAudioSelected={this.handleAudioSelection}></SoundOption>
         }
 
-        let exeOptions = <Button className='play' color='secondary' onClick={() => this.props.onExeSelected() } size="sm">Play</Button>
+        let exeOptions = <Button className='play' color='secondary' onClick={() => this.handleExeSelection() } size="sm">Play</Button>
         if (this.props.data.exeOptions.length > 1) {
             exeOptions = <ExeOption data={this.props.data} onExeSelected={this.handleExeSelection}></ExeOption>
         }
