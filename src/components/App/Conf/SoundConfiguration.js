@@ -43,7 +43,7 @@ const SoundConfiguration = {
     },
     cgb: {
         name: 'Game Blaster',
-        color: 'success',
+        color: 'info',
         conf:`
         [sblaster]
         sbtype=gb

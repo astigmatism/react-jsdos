@@ -158,8 +158,13 @@ class JsDos extends React.Component {
 
         let cdFile = 'cd.zip'
 
-        if (titleData.exeSelection && titleData.exeSelection.cdFile) {
-            cdFile = titleData.exeSelection.cdFile
+        if (titleData.exeSelection) {
+            if (titleData.exeSelection.cdFile) {
+                cdFile = titleData.exeSelection.cdFile
+            }
+            else {
+                return //if exeSelection has no cd to download, leave
+            }
         }
 
         try {
