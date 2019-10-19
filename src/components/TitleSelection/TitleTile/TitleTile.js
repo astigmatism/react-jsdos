@@ -30,8 +30,12 @@ class Title extends React.Component {
     const animDelay = ((this.props.iteration % 6) + (this.props.iteration / 6)) * 120
     const animDuration = 1200
 
+    let thumb = this.props.data.tile.uri
+    let yPos = this.props.data.tile.backgroundPositionY
+
     let imgStyle = {
-      backgroundImage: 'url(' + this.props.data.thumbs[0] + ')'
+      backgroundImage: 'url(' + thumb + ')',
+      backgroundPositionY: yPos
     }
 
     return (

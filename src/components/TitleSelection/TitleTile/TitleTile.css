@@ -16,7 +16,7 @@
 .titleTile .image {
   height: 118px;
   background-repeat: no-repeat;
-  background-size: 157.333px 118px;
+  background-size: 157.333px auto;
 
   transition:All 100ms ease-out;
   -webkit-transition:All 100ms ease-out;
