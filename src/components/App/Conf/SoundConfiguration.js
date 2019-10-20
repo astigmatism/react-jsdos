@@ -75,6 +75,14 @@ const SoundConfiguration = {
         oplemu=default
         oplrate=44100
         `
+    },
+    sc55: {
+        name: 'Roland SC-55',
+        color: 'info',
+        conf:`
+        [midi]
+        mididevice=fluidsynth
+        `
     }
 }
 
