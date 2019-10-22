@@ -35,7 +35,7 @@ class ContextMenu extends React.Component {
             data.exeSelection = exe
         }
 
-        window.scrollTo(0, 0);
+        window.scrollTo(0, 0)
 
         this.props.loadTitle(data)
         this.props.toggle()

@@ -272,7 +272,9 @@ class JsDos extends React.Component {
                 this.refs.dialogs.style.display = 'none'
                 this.refs.canvas.style.opacity = 1
                 if (this.props.activeTitle.canvasImageRendering !== null)
+                {
                     this.refs.canvas.style['image-rendering'] = this.props.activeTitle.canvasImageRendering
+                }
 
                 break
             case this.internalState.playing:
