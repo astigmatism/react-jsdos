@@ -195,6 +195,9 @@ class JsDos extends React.Component {
     }
 
     buildConfFile = async (fs, titleData) => {
+        
+        //these settings override defaults and are global
+        
         let conf = `
         [mixer]
         blocksize=128
