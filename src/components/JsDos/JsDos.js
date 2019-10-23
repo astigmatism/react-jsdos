@@ -199,6 +199,8 @@ class JsDos extends React.Component {
         [mixer]
         blocksize=128
         prebuffer=5000
+        [joystick]
+        joysticktype=none
         `
 
         conf += SoundConfiguration[titleData.soundSelection].conf
