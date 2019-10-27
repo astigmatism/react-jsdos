@@ -197,13 +197,15 @@ class JsDos extends React.Component {
     buildConfFile = async (fs, titleData) => {
         
         //these settings override defaults and are global
-        
+
         let conf = `
         [mixer]
         blocksize=128
         prebuffer=5000
         [joystick]
         joysticktype=none
+        [sdl]
+        autolock=true
         `
 
         conf += SoundConfiguration[titleData.soundSelection].conf
