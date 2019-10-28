@@ -86,7 +86,7 @@ class JsDos extends React.Component {
                     break
             case 'fullscreen':
                 if (this.state.operation === this.internalState.playing) {
-                    this.state.commandInterface.api.requestFullScreen()
+                    this.state.commandInterface.api.requestFullScreen(true, false)
                 }
                 break
             default:
