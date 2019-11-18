@@ -11,8 +11,7 @@ class JsDos extends React.Component {
         this.internalState = {
             idle: 'idle',
             downloading: 'downloading',
-            extractingFolder: 'extractingFolder',
-            exractingRoot: 'exractingRoot',
+            extracting: 'extracting',
             resizeOnStart: 'resizeOnStart',
             starting: 'starting',
             playing: 'playing',
@@ -129,21 +128,28 @@ class JsDos extends React.Component {
         }).ready((fs, main) => {
 
             this.setOperation({
-                operation: this.internalState.extractingFolder
+                operation: this.internalState.extracting
             })
-            fs.extract('games/' + titleData.key + '/game.zip', '/' + titleData.installFolder).then(() => {
-                self.extractSoundConfiguration(fs, titleData).then(() => {
-                    self.extractCdImages(fs, titleData).then(() => {
-                        self.buildConfFile(fs, titleData).then(() => {
 
-                            main(["-conf", "dosbox.conf"]).then((ci) => {
+            let extractSet = [
+                {
+                    url: 'games/' + titleData.key + '/game.zip',
+                    mountPoint: '/' + titleData.installFolder
+                }
+            ]
 
-                                self.setOperation({
-                                    operation: self.internalState.resizeOnStart,
-                                    percentage: 100,
-                                    commandInterface: ci
-                                })
-                            })
+            extractSet = self.includeSoundFilesForExtraction(titleData, extractSet)
+            extractSet = self.includeCDFilesForExtraction(titleData, extractSet)
+
+            fs.extractAll(extractSet).then(() => {               
+                self.buildConfFile(fs, titleData).then(() => {
+
+                    main(["-conf", "dosbox.conf"]).then((ci) => {
+
+                        self.setOperation({
+                            operation: self.internalState.resizeOnStart,
+                            percentage: 100,
+                            commandInterface: ci
                         })
                     })
                 })
@@ -154,8 +160,7 @@ class JsDos extends React.Component {
         })
     }
 
-    extractCdImages = async (fs, titleData) => {
-
+    includeCDFilesForExtraction = (titleData, extractSet) => {
         let cdFile = 'cd.zip'
 
         if (titleData.exeSelection) {
@@ -163,34 +168,27 @@ class JsDos extends React.Component {
                 cdFile = titleData.exeSelection.cdFile
             }
             else {
-                return //if exeSelection has no cd to download, leave
+                return extractSet //if exeSelection has no cd to download, leave
             }
         }
 
-        try {
-            this.setOperation({
-                operation: this.internalState.exractingRoot
-            })
-            return await fs.extract('games/' + titleData.key + '/' + cdFile);
-        }
-        catch(e) {
-            console.log('no root file to extract')
-        }
+        extractSet.push({
+            url: 'games/' + titleData.key + '/' + cdFile,
+            mountPoint: ''
+        })
+        return extractSet
     }
 
-    extractSoundConfiguration = async (fs, titleData) => {
-        
+    includeSoundFilesForExtraction = (titleData, extractSet) => {
         switch (titleData.soundSelection) {
             case 'gus': 
-                try {
-                    return await fs.extract('sound/gus.zip', '/ultrasnd');
-                }
-                catch(e) {
-                    console.log(e)
-                }
-                break
+                extractSet.push({
+                    url: 'sound/gus.zip',
+                    mountPoint: '/ultrasnd'
+                })
+                return extractSet
             default:
-                break
+                return extractSet
         }
     }
 
@@ -264,10 +262,7 @@ class JsDos extends React.Component {
             case this.internalState.downloading:
                 this.refs.dialogs.style.opacity = 1
                 break
-            case this.internalState.extractingFolder:
-                this.refs.dialogs.style.opacity = 1
-                break
-            case this.internalState.exractingRoot:
+            case this.internalState.extracting:
                 this.refs.dialogs.style.opacity = 1
                 break
             case this.internalState.resizeOnStart:
@@ -306,8 +301,7 @@ class JsDos extends React.Component {
                     {(  
                         //this.state.operation === this.internalState.idle || //for testing
                         this.state.operation === this.internalState.downloading || 
-                        this.state.operation === this.internalState.extractingFolder ||
-                        this.state.operation === this.internalState.exractingRoot ||
+                        this.state.operation === this.internalState.extracting ||
                         this.state.operation === this.internalState.resizeOnStart
                     ) && <Loading operation={this.state.operation} percentage={this.state.percentage} />}
                 </div>

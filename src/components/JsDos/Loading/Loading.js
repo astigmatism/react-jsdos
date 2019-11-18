@@ -12,8 +12,7 @@ class Loading extends React.Component {
     this.internalState = {
       idle: 'idle',
       downloading: 'downloading',
-      extractingFolder: 'extractingFolder',
-      exractingRoot: 'exractingRoot',
+      extracting: 'extracting',
       resizeOnStart: 'resizeOnStart'
   }
 
@@ -148,14 +147,12 @@ class Loading extends React.Component {
     switch (this.props.operation) {
       case this.internalState.idle:
         return <div></div>
-      case this.internalState.downloading:
+      
+        case this.internalState.downloading:
           return <div className='message'>preparing</div>
-      case this.internalState.extractingFolder:
-          return <div className='message'>extracting</div>
-      case this.internalState.exractingRoot:
-          if (this.props.percentage < 1) {
-            return <div className='message'>extracting</div>
-          } else if (this.props.percentage > 95) {
+
+      case this.internalState.extracting:
+          if (this.props.percentage > 95) {
             return <div className='message'>installing</div>
           }
 
