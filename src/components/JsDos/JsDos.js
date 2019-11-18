@@ -131,15 +131,17 @@ class JsDos extends React.Component {
                 operation: this.internalState.extracting
             })
 
-            let extractSet = [
-                {
-                    url: 'games/' + titleData.key + '/game.zip',
-                    mountPoint: '/' + titleData.installFolder
+            let extractSet = titleData.extractions.map(entry => {
+                return {
+                    url: 'games/' + titleData.key + '/' + entry.file,
+                    mountPoint: '/' + entry.mount
                 }
-            ]
+            })
+
 
             extractSet = self.includeSoundFilesForExtraction(titleData, extractSet)
-            extractSet = self.includeCDFilesForExtraction(titleData, extractSet)
+
+            console.log(extractSet);
 
             fs.extractAll(extractSet).then(() => {               
                 self.buildConfFile(fs, titleData).then(() => {
@@ -158,25 +160,6 @@ class JsDos extends React.Component {
         }).catch((message) => {
           console.log(message);
         })
-    }
-
-    includeCDFilesForExtraction = (titleData, extractSet) => {
-        let cdFile = 'cd.zip'
-
-        if (titleData.exeSelection) {
-            if (titleData.exeSelection.cdFile) {
-                cdFile = titleData.exeSelection.cdFile
-            }
-            else {
-                return extractSet //if exeSelection has no cd to download, leave
-            }
-        }
-
-        extractSet.push({
-            url: 'games/' + titleData.key + '/' + cdFile,
-            mountPoint: ''
-        })
-        return extractSet
     }
 
     includeSoundFilesForExtraction = (titleData, extractSet) => {
