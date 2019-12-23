@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css'
 import Header from '../Header/Header'
 import JsDos from '../JsDos/JsDos'
-import DevTools from '../Tools/DevTools'
 import ToolTray from '../Tools/ToolTray'
 import TitleSelection from '../TitleSelection/TitleSelection'
 
